@@ -34,7 +34,7 @@ def home(request: Request):
             "user": {
                 "email": "me@olanrewajusholarin.com",
                 "name": "Olanrewaju Sholarin",
-                "stack": "Python/Fastapi"
+                "stack": "Python/FastAPI"
             },
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "fact": cat_api_response['fact']
