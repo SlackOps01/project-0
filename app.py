@@ -41,7 +41,7 @@ def get_profile(request: Request):
         return{
             "status": "success",
             "user": {
-                "email": "me@olanrewajusholarin.com",
+                "email": "olanrewajusholarin5@gmail.com",
                 "name": "Olanrewaju Sholarin",
                 "stack": "Python/FastAPI"
             },
