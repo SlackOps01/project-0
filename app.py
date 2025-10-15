@@ -23,9 +23,18 @@ app.add_middleware(
     allow_methods = ["*"]
 )
 
-@app.get("/me")
+@app.get("/")
 @limiter.limit("10/minute")
 def home(request: Request):
+    raise HTTPException(
+        status_code=status.HTTP_303_SEE_OTHER,
+        detail="Go to /me endpoint"
+    )
+
+
+@app.get("/me")
+@limiter.limit("10/minute")
+def get_profile(request: Request):
     try:
         cat_api_request = httpx.get(cat_facts_url)
         cat_api_response = cat_api_request.json()
