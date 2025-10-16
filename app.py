@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, status, Request
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import httpx
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler, Limiter
@@ -38,6 +38,7 @@ def get_profile(request: Request):
     try:
         cat_api_request = httpx.get(cat_facts_url)
         cat_api_response = cat_api_request.json()
+        ng_tz = timezone(timedelta(hours=1))
         return{
             "status": "success",
             "user": {
@@ -45,7 +46,7 @@ def get_profile(request: Request):
                 "name": "Olanrewaju Sholarin",
                 "stack": "Python/FastAPI"
             },
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(ng_tz).isoformat(),
             "fact": cat_api_response['fact']
         }
     except httpx.RequestError:
